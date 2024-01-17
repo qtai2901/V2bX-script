@@ -149,6 +149,7 @@ install_V2bX() {
     echo -e "${green}V2bX ${last_version}${plain} 安装完成，已设置开机自启"
     cp geoip.dat /etc/V2bX/
     cp geosite.dat /etc/V2bX/
+    
 
     if [[ ! -f /etc/V2bX/config.json ]]; then
         cp config.json /etc/V2bX/
@@ -168,8 +169,12 @@ install_V2bX() {
         first_install=false
     fi
 
+
     if [[ ! -f /etc/V2bX/dns.json ]]; then
         cp dns.json /etc/V2bX/
+    fi
+     if [[ ! -f /etc/V2bX/sing_origin.json ]]; then
+        cp sing_origin.json /etc/V2bX/
     fi
     if [[ ! -f /etc/V2bX/route.json ]]; then
         cp route.json /etc/V2bX/
