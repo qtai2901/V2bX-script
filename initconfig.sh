@@ -9,6 +9,13 @@ read -p "  Vui lòng chọn một số và nhấn Enter (Enter theo mặc địn
 
 
 pre_install(){
+check_ipv6_support() {
+    if ip -6 addr | grep -q "inet6"; then
+        echo "1"  # 支持 IPv6
+    else
+        echo "0"  # 不支持 IPv6
+    fi
+}
 ipv6_support=$(check_ipv6_support)
     listen_ip="0.0.0.0"
     if [ "$ipv6_support" -eq 1 ]; then
@@ -109,13 +116,7 @@ case "${num}" in
 openssl req -newkey rsa:2048 -x509 -sha256 -days 365 -nodes -out /etc/V2bX/quoctai.crt -keyout /etc/V2bX/quoctai.key -subj "/C=JP/ST=Tokyo/L=Chiyoda-ku/O=Google Trust Services LLC/CN=google.com"
 nodes_config=()
 pre_install
-check_ipv6_support() {
-    if ip -6 addr | grep -q "inet6"; then
-        echo "1"  # 支持 IPv6
-    else
-        echo "0"  # 不支持 IPv6
-    fi
-}
+
 
 
 nodes_config_str="${nodes_config[*]}"
