@@ -38,12 +38,12 @@ do
     read -p "chọn kiểu (mặc định là PORT 80):" cermode
     NodeType="Vless"
     if [ "$cermode" == "1" ]; then
-        cermode = "none"
+        cermode="none"
     elif [ "$cermode" == "2" ]; then
-      cermode = "file"
+      cermode="file"
     elif [ "$cermode" == "3" ]; then
-      cermode = "none"
-    else cermode = "none"
+      cermode="none"
+    else cermode="none"
     fi
     
   elif [ "$NodeType" == "3" ]; then
@@ -67,12 +67,7 @@ do
   echo "--------------------------------"
 
 
-  #node id
-    read -p " ID nút (Node_ID):" node_id
-  [ -z "${node_id}" ] && node_id=0
-  echo "-------------------------------"
-  echo -e "Node_ID: ${node_id}"
-  echo "-------------------------------"
+
 
 node_config=$(cat <<EOF
 {
@@ -195,8 +190,6 @@ formatted_nodes_config="${nodes_config_str%,}"
     "Nodes": [$formatted_nodes_config]
 }
 EOF
-
-pre_install
 cd /root
 v2bx restart
  ;;
