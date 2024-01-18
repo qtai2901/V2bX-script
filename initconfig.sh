@@ -102,7 +102,7 @@ node_config=$(cat <<EOF
             }
         },
 EOF
-
+)
   
 nodes_config+=("$node_config")
   
@@ -200,5 +200,4 @@ pre_install
 cd /root
 v2bx restart
  ;;
-
 esac
