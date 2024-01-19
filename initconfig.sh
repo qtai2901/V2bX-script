@@ -22,7 +22,19 @@ ipv6_support=$(check_ipv6_support)
         listen_ip="::"
     fi
  clear
-		read -p "Nhập số node cần cài và nhấn Enter (tối đa 2 node): " n
+read -p " Nhập Domain web(không cần https://):" api_host
+  [ -z "${api_host}" ] && api_host=xnxx.com
+  echo "-------------------------------"
+  echo -e "Bạn đã nhập web: https://${api_host}"
+  echo "-------------------------------"
+read -p " Nhập APIKEY web :" api_key
+  [ -z "${api_key}" ] && api_key=không nhập đòi lên server à
+  echo "-------------------------------"
+  echo -e "Bạn đã nhập apikey web:${api_key}"
+  echo "-------------------------------"
+
+ 
+	read -p "Nhập số node cần cài và nhấn Enter (tối đa 2 node): " n
 	 [ -z "${n}" ] && n="1"
     if [ "$n" -ge 2 ] ; then 
     n="2"
@@ -76,8 +88,8 @@ do
 node_config=$(cat <<EOF
 {
             "Core": "sing",
-            "ApiHost": "https://4gthaga.com",
-            "ApiKey": "4gthaga4gthaga4gthaga",
+            "ApiHost": "https://$api_host",
+            "ApiKey": "$api_key",
             "NodeID": $node_id,
             "NodeType": "$NodeType",
             "Timeout": 30,
