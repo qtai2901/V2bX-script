@@ -49,13 +49,22 @@ do
  echo -e "[4] Shadowsocks"
   read -p "chọn kiểu node(mặc định là Vmess):" NodeType
   if [ "$NodeType" == "1" ]; then
-    NodeType="Vmess"
+    echo -e "[1] PORT 80"
+    echo -e "[2] TLS"
+    read -p "chọn kiểu (mặc định là PORT 80):" cermode
+    NodeType=vmess"
+    if [ "$cermode" == "1" ]; then
+        cermode="none"
+    elif [ "$cermode" == "2" ]; then
+      cermode="file"
+      else cermode="none"
+    fi
   elif [ "$NodeType" == "2" ]; then
     echo -e "[1] REALITY"
     echo -e "[2] TLS"
     echo -e "[3] PORT 80"
     read -p "chọn kiểu (mặc định là PORT 80):" cermode
-    NodeType="Vless"
+    NodeType="vless"
     if [ "$cermode" == "1" ]; then
         cermode="none"
     elif [ "$cermode" == "2" ]; then
@@ -66,9 +75,10 @@ do
     fi
     
   elif [ "$NodeType" == "3" ]; then
-    NodeType="Trojan"
+    NodeType="trojan"
+    cermode="file"
   elif [ "$NodeType" == "4" ]; then
-    NodeType="Shadowsocks"
+    NodeType="shadowsocks"
   else
     NodeType="Vmess"
   fi
